@@ -21,12 +21,13 @@ export const putDb = async (content) => {
 
   const store  = tx.objectStore('jate');
 
-  const request = store.add(content);
+  const request = store.add({content});
 
   const result = await request;
 
   console.error('putDb not implemented');
   console.log('Data putted to the database', result);
+  return result;
 };
 
 // TODO: Add logic for a method that gets all the content from the database
@@ -44,7 +45,9 @@ export const getDb = async () => {
 
   console.error('getDb not implemented');
   console.log('result.value', result);
-  return result;
+
+  const content = result[result.length -1].content;
+  return content;
 };
 
 initdb();
