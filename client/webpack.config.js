@@ -8,7 +8,8 @@ module.exports = () => {
     mode: 'development',
     entry: {
       main: './src/js/index.js',
-      install: './src/js/install.js'
+      install: './src/js/install.js',
+      editor: "./src/js/editor.js",
     },
     output: {
       filename: '[name].bundle.js',
@@ -21,9 +22,11 @@ module.exports = () => {
       }),
       new InjectManifest({
         swSrc: './src-sw.js',
-        swDest: 'service-worker.js',
+        swDest: 'src-sw.js',
       }),
       new WebpackPwaManifest({
+        fingerprints: false,
+        inject: true,
         name: 'My Progressive Web App',
         short_name: 'MyPWA',
         description: 'My awesome Progressive Web App!',
@@ -35,7 +38,7 @@ module.exports = () => {
           {
             src: path.resolve('src/images/icon.png'),
             sizes: [96, 128, 192, 256, 384, 512], // multiple sizes
-            destination: path.join('icons'),
+            destination: path.join('assets','icons'),
           },
         ],
       }),
