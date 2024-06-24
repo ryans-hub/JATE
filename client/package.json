@@ -1,5 +1,6 @@
 {
   "name": "JATE",
+  "main": "server.js",
   "scripts": {
     "dev": "webpack-dev-server",
     "build": "webpack --mode production",
